@@ -5,11 +5,16 @@
     background: gray;
 }
 
+body {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .game {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 100vh;
+    width: fit-content;
     justify-content: center;
     align-items: center;
 }
@@ -32,12 +37,7 @@
 
 
 
-.options {
-    display: flex;
-    width: 50vw;
-    justify-content: space-evenly;
-    margin-top: 2rem;
-}
+
 
 .hold {
     padding: 1rem;
@@ -48,6 +48,7 @@
     border-color: black;
     border: none;
     cursor: pointer;
+    margin: auto;
 }
 
 .move {
@@ -78,7 +79,8 @@
     font-size: 2rem;
     font-weight: bold;
     display: flex;
-    width: vw;
+    width: 100%;
+    padding: 20px;
 
 
 
