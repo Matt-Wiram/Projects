@@ -182,12 +182,14 @@ const game = () => {
             console.log(answer)
             alert("Congratulations you won")
             result.style.fontSize = '2em';
+
             result.innerText = "You won the game"
         }
 
         else if (moves === 6) {
             alert("You lost the game. Here is the answer " + answer);
             result.style.fontSize = '2em';
+
             result.innerText = "You lost the game"
 
         }
