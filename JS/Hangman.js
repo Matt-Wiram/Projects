@@ -46,7 +46,13 @@ const game = () => {
         'kingdom hearts',
         'call of duty',
         'minecraft',
-        'runescape'
+        'runescape',
+        'roblox',
+        'borderlands',
+        'world of warcraft',
+        'days gone',
+        'final fantasy'
+
     ];
 
     let answer = '';
