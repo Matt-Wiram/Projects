@@ -1,20 +1,4 @@
-function generateButtons() {
-    let choice = ['heads', 'tails'];
-    let div = document.createElement('div');
-    div.id = 'choiceBank';
-    div.className = 'choiceBank';
-    document.body.appendChild(div);
-    for (let i = 0; i < choice.length; i++) {
-        let btn = document.createElement('button');
-        btn.innerHTML = `${choice[i]}`;
-        btn.id = btn.innerHTML;
-        let div = document.getElementById('choiceBank');
-        div.appendChild(btn);
-        document.body.appendChild(div)
-    }
-}
 
-generateButtons();
 
 const game = () => {
 
