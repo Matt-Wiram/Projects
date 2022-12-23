@@ -2,10 +2,14 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background: gray;
+
 }
 body {
     padding: 0 20px;
+    background: linear-gradient(180.3deg, rgb(221, 221, 221) 5.5%, rgb(110, 136, 161) 90.2%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 
@@ -58,6 +62,7 @@ body {
     margin: 10px;
     height: 50px;
     width: 70px;
+    background-color: white;
     border-radius: 10px;
     border: 2px solid black;
 }
@@ -65,6 +70,7 @@ body {
     margin: 10px;
     height: 50px;
     width: 70px;
+    background-color: white;
     border-radius: 10px;
     border: 2px solid black;
 }
@@ -91,7 +97,7 @@ body {
     display: none;
     margin-top: 2rem;
     padding: 1rem;
-    background: skyblue;
+    background: white;
     outline: none;
     border: none;
     border-radius: 10px;
@@ -103,5 +109,5 @@ body {
 
 .result {
     margin-top: 20px;
-    font-size: 1rem;
+    font-size: 4rem;
 }

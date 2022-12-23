@@ -1,0 +1,13 @@
+body {
+    background-color: gray;
+}
+
+.container {
+    height: 540px;
+    width: 540px;
+}
+
+img {
+    height: 154px;
+    width: 180px;
+}

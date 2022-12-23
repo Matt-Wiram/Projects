@@ -1,107 +1,102 @@
+let headsBtn = document.getElementById("heads");
+let tailsBtn = document.getElementById("tails");
+
+let pScore = document.getElementsByClassName('p-count');
+let p = 0;
+let cScore = document.getElementsByClassName('c-count');
+let c = 0;
+let movesLeft = document.getElementsByClassName("movesleft");
 
 
-const game = () => {
 
-    let playerScore = 0;
-    let computerScore = 0;
-    let moves = 0;
 
-    const playGame = () => {
-        const headsBtn = document.getElementById('heads');
-        const tailsBtn = document.getElementById("tails");
-        const playerOptions = [headsBtn, tailsBtn];
-        const computerOptions = ['heads', 'tails'];
+$(headsBtn).click(function () {
+    let rando = Math.floor(Math.random() * 2) === 0 ? "heads" : "tails";
+    if (rando === 'heads') {
 
-        playerOptions.forEach(option => {
-            option.addEventListener('click', function () {
-                const movesLeft = document.querySelector('.movesleft');
-                moves++;
-                movesLeft.innerText = `Moves Left: ${10 - moves}`;
+        p++;
 
-                const choiceNumber = Math.floor(Math.random() * 2);
-                const computerChoice = computerOptions[choiceNumber];
 
-                winner(this.innerText, computerChoice);
 
-                if (moves == 10) {
-                    gameOver(playerOptions, movesLeft);
-                }
-            })
-        })
-    }
-    const winner = (player, computer) => {
-        const result = document.querySelector('.result');
-        const playerScoreBoard = document.querySelector('.p-count');
-        const computerScoreBoard = document.querySelector('.c-count');
-        player = player.toLowerCase();
-        computer = computer.toLowerCase();
-        if (player === 'heads') {
-            if (computer === 'heads') {
-                result.textContent = 'Player Won';
-                playerScore++;
-                playerScoreBoard.textContent = playerScore;
-            }
-            else if (computer === 'tails') {
-                result.textContent = 'Computer Won';
-                computerScore++;
-                computerScoreBoard.textContent = computerScore;
-            }
-        }
-        else if (player === 'tails') {
-            if (computer === 'tails') {
-                result.textContent = 'Player Won';
-                playerScore++;
-                playerScoreBoard.textContent = playerScore;
-            }
-            else if (computer === 'heads') {
-                result.textContent = 'Computer Won';
-                computerScore++;
-                computerScoreBoard.textContent = computerScore;
-            }
-        }
+        pScore[0].innerHTML = p;
+        winCheck();
+
+    } else {
+        c++;
+
+
+        cScore[0].innerHTML = c;
+        winCheck();
     }
 
-    const gameOver = (playerOptions, movesLeft) => {
-        const chooseMove = document.querySelector('.move');
-        const result = document.querySelector('.result');
-        const reloadBtn = document.querySelector('.reload');
 
-        playerOptions.forEach(option => {
-            option.style.display = 'none'
-        })
-        chooseMove.innerText = 'Game Over';
-        movesLeft.style.display = 'none';
 
-        if (playerScore > computerScore) {
-            result.style.fontsize = '2em';
-            result.innerText = 'You won the game'
-        }
-        else if (playerScore === computerScore) {
-            result.style.fontsize = '2em';
-            result.innerText = "It's a tie"
-        }
-        else {
-            result.style.fontsize = '2em';
-            result.innerText = 'Oh the computer won haha';
-        }
-        reloadBtn.innerText = 'Restart';
-        reloadBtn.style.display = 'flex';
-        reloadBtn.addEventListener('click', function () {
-            window.location.reload()
-        })
+
+})
+
+$(tailsBtn).click(function () {
+    let rando = Math.floor(Math.random() * 2) === 0 ? "heads" : "tails";
+    if (rando === 'heads') {
+        c++
+
+
+        cScore[0].innerHTML = c;
+        winCheck();
+    } else {
+
+        p++
+
+        pScore[0].innerHTML = p;
+        winCheck();
     }
-playGame()
+})
+
+
+function winCheck() {
+    if (pScore[0].innerHTML === "10") {
+        console.log("you win");
+        $("section").css("display", "none")
+        $(".result").css({
+        "display": "block",
+        "margin-top": "2rem",
+        "padding": "1rem",
+        "background": "white",
+        "outline": "none",
+        "border": "none",
+        "border-radius": "10px",
+        "cursor": "pointer",
+        "text-align": "center"
+
+
+
+    })
+        $(".result").html("You Won")
+        $(".reload").css({"display": "block", "text-align": "center", "margin": "auto", "margin-top": "2em"})
+
+    } else if (cScore[0].innerHTML === '10') {
+        console.log('you lose')
+        $("section").css("display", "none")
+        $(".result").css({
+            "display": "block",
+            "margin-top": "2rem",
+            "padding": "1rem",
+            "background": "white",
+            "outline": "none",
+            "border": "none",
+            "border-radius": "10px",
+            "cursor": "pointer",
+            "text-align": "center",
 
 
 
 
+        })
+        $(".result").html("You Lost")
+        $(".reload").css({"display": "block", "text-align": "center", "margin": "auto", "margin-top": "2em"})
 
-
-
-
-
-
-
+    }
 }
 
-game()
+$(".reload").click(function () {
+    location.reload()
+})

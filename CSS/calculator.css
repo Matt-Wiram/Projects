@@ -1,0 +1,19 @@
+
+button {
+    height: 60px;
+}
+
+
+.score {
+    height: 120px;
+    font-size: 30px;
+    text-align: center;
+    color: lightgray;
+    background-color: black;
+
+
+}
+
+.top {
+    background-color: white;
+}
