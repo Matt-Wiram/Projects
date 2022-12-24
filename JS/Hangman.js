@@ -1,224 +1,110 @@
+"use strict"
 
-function generateButtons() {
-    let alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    let btn1 = document.createElement("div");
-    btn1.innerHTML = '';
-    btn1.classList = "btn1";
-    btn1.id = "btn1";
-    document.body.appendChild(btn1)
+let alphabet = "abcdefghijklmnopqrstuvwxyz";
+let games = ['runescape', 'call of duty', 'gears of war', 'legend of zelda', 'minecraft', 'resident evil', 'borderlands'];
+let lives = 0;
+let letter = [];
+let rando = Math.floor(Math.random() * games.length);
+let game = games[rando]
+let formatGame;
+
+
+
+function setButtons() {
     for (let i = 0; i < alphabet.length; i++) {
+
         let btn = document.createElement("button");
-        btn.innerHTML = `${alphabet[i]}`;
-        btn.type = 'submit';
-        btn.classList = "hold";
-        btn.id = btn.innerHTML;
-        btn.onclick = function () {
-
-            btn.disabled = true
-        }
-
-        let end = document.getElementById("btn1");
-        let section = document.getElementById("game")
-        end.appendChild(btn);
-        section.appendChild(end)
-        document.body.appendChild(section);
-
-
+        btn.className = 'text-center '
+        btn.id = alphabet[i];
+        btn.innerText = alphabet[i];
+       document.getElementById('letters').append(btn);
     }
+}
+setButtons()
+
+let letters = document.getElementById('letters').children;
+
+for (let i = 0; i < letters.length; i++) {
+    letters[i].addEventListener('click', function (e) {
+        letter.unshift(e.target.id)
+        e.target.disabled = true;
+        e.target.style.display = "none"
+        if (game.includes(e.target.id)) {
+            letter.push(e.target.id)
+            check(e.target.id)
+        } else {loseCheck()}
+
+    })
+}
+
+function format() {
+    console.log(game);
+
+        formatGame = game.replace(/[a-z]/gi, "-")
+
+    document.getElementById('choice').append(formatGame)
+}
+format();
 
 
+//come back to this when you can select the topic
+function check(char) {
 
+    let index = [];
+    formatGame = formatGame.split("")
+    for (let i = 0; i < game.length; i++) {
 
+        if (game[i] === char) {
+            formatGame[i]= char
+            console.log(formatGame);
+        }
+    }
+    formatGame = formatGame.join("")
+
+    document.getElementById('choice').innerText = "";
+
+    document.getElementById('choice').innerText = formatGame;
+
+    winCheck(formatGame, game)
 
 }
 
-
-generateButtons();
-
-const game = () => {
-
-    let moves = 0;
-
-    let games = [
-        'resident evil',
-        'halo',
-        'gears of war',
-        'kingdom hearts',
-        'call of duty',
-        'minecraft',
-        'runescape',
-        'roblox',
-        'borderlands',
-        'world of warcraft',
-        'days gone',
-        'final fantasy'
-
-    ];
-
-    let answer = '';
-
-    answer = games[Math.floor(Math.random() * games.length)];
-
-    let finalWord = [];
-    let guessedLetters = [];
-    let indexes = [];
-    let wrongLetters = [];
-
-    let wordArray = answer.split('')
-
-    let word = wordArray.map(x => '_').join(' ');
-
-    let wordAnswer = document.createElement('h2');
-    wordAnswer.innerHTML = word;
-    wordAnswer.classList = "word";
-    let btn = document.getElementById("btn")
-    let section = document.getElementById('game')
-
-    btn.appendChild(wordAnswer)
-    section.appendChild(btn)
-    document.body.appendChild(section)
-
-
-
-    const playGame = () => {
-
-
-
-        const generateChoices = () => {
-
-
-            const playerOptions = document.getElementById("btn1").querySelectorAll('.hold');
-
-            playerOptions.forEach(option => {
-                option.addEventListener('click', function() {
-
-
-
-                    function checkLetter(a) {
-                        if (wordArray.includes(a)) {
-                            guessedLetters.push(a)
-                            indexes.push(i)
-                            for (let i = 0; i < wordArray.length; i++) {
-                                if (wordArray[i] === a) {
-
-                                    console.log(guessedLetters)
-                                    let answ = word.split(" ");
-                                    answ[i] = wordArray[i];
-                                    let end = answ.join(" ");
-                                    word = end
-                                    wordAnswer.innerHTML = word;
-                                    finalWord = word
-                                    console.log(finalWord.replace("_", "").split(" ").join(""))
-                                    console.log(answer.replace(" ", "").replace(" ", ""))
-
-                                }
-                            }
-                        }
-                        else  {
-
-                            wrongLetters.push(a);
-                            const movesLeft = document.querySelector('.movesleft');
-                            moves++;
-                            movesLeft.innerText = `Moves Left: ${6 - moves}`;
-                            if (moves === 6) {
-                                gameOver(playerOptions, moves, finalWord)
-                            }
-                        }
-                    }
-
-
-
-                    checkLetter(option.innerText)
-
-                    console.log(finalWord)
-                    console.log(answer)
-
-// do if else
-
-                    if (finalWord.split(" ").join("") === answer) {
-                        gameOver(playerOptions, moves, finalWord)
-                    }
-                    else if (finalWord.replace("_", "").split(" ").join("") === answer.replace(" ", "")) {
-                        gameOver(playerOptions, moves, finalWord)
-                    }
-
-                    else if (finalWord.replace("_", "").replace("_", "").split(" ").join("") === answer.replace(" ", "").replace(" ", "")) {
-                        gameOver(playerOptions, moves, finalWord)
-
-                    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                })
-            })
-
-        }
-        generateChoices()
-
-
-    }
-
-
-    const gameOver = (playerOptions, movesLeft, finalWord) => {
-        const chooseMove = document.querySelector('.move');
-        const result = document.querySelector('.result');
-        const reloadBtn = document.querySelector('.reload');
-
-
-        playerOptions.forEach(option => {
-            option.style.display = 'none'
+function loseCheck() {
+    lives++
+    let live1 = document.getElementById('lives');
+    live1.innerText = `Lives Left: ${6 - lives}`
+    alert("Sorry Wrong Letter")
+    if (lives === 6) {
+        document.getElementById('body').style.display = "none";
+        let lose = document.createElement('h1');
+        let btn = document.createElement('button');
+        btn.innerText = "Reload"
+        btn.addEventListener('click', function () {
+            location.reload()
         })
-
-        chooseMove.innerText = "Game Over";
-
-        console.log(finalWord)
-        if (finalWord.replace("_", "").replace("_", "").split(" ").join("") === answer.replace(" ", "").replace(" ", "")) {
-            console.log(wordAnswer)
-            console.log(answer)
-            alert("Congratulations you won")
-            result.style.fontSize = '2em';
-
-            result.innerText = "You won the game"
-        }
-
-        else if (moves === 6) {
-            alert("You lost the game. Here is the answer " + answer);
-            result.style.fontSize = '2em';
-
-            result.innerText = "You lost the game"
-
-        }
-
-        reloadBtn.innerText = "Restart";
-        reloadBtn.style.display = 'flex';
-        reloadBtn.addEventListener('click', function() {
-            window.location.reload();
-
-        })
-
+        btn.id = 'btn2'
+        btn.className = 'text-center justify-content-center'
+        lose.className = 'text-center lose justify-content-center'
+        lose.innerText = "You Lost"
+        document.body.append(lose)
+        document.body.append(btn)
     }
-
-
-
-
-
-
-    playGame()
-
 }
 
-game()
-
-
-
+function winCheck (format, gme) {
+    if (format === gme) {
+        document.getElementById('body').style.display = "none";
+        let win = document.createElement('h1');
+        let btn = document.createElement('button');
+        btn.innerText = "Reload"
+        btn.addEventListener('click', function () {
+            location.reload()
+        })
+        btn.className = 'justify-content-center'
+        btn.id = 'btn1'
+        win.className = 'text-center win'
+        win.innerText = "You Won"
+        document.body.append(win)
+        document.body.append(btn)
+    }
+}

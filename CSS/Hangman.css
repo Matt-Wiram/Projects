@@ -1,90 +1,45 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    background: gray;
+#choice {
+    font-size: 3em;
+    color: white;
 }
 
 body {
-    padding-left: 20px;
-    padding-right: 20px;
+    background: rgb(2,0,36);
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(136,114,113,1) 100%, rgba(77,76,80,1) 100%);
 }
 
-.game {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: fit-content;
-    justify-content: center;
-    align-items: center;
+h1 {
+    color: white;
 }
 
-.title {
-    position: absolute;
-    top: 0;
-    font-size: 4rem;
-    z-index: 2;
+button {
+    background-color: darkgray;
+    color: black;
+    font-size: 1.5em;
+    /*margin: 2px;*/
+    border-radius: 25px;
 }
 
-.score {
-    display: flex;
-    width: vw;
-    justify-content: space-evenly;
-    position: absolute;
-    top: 70px;
-    z-index: 1;
+.lose {
+    margin-top: 1.5em;
+    font-size: 10em;
 }
 
+.win {
+    margin-top: 1.5em;
+    font-size: 10em;
+}
 
-
-
-
-.hold {
-    padding: 1rem;
-    width: 100px;
-    border-radius: 10px;
-    background: skyblue;
-    outline: none;
-    border-color: black;
-    border: none;
-    cursor: pointer;
+#btn2 {
     margin: auto;
-}
-
-.move {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.reload {
-    display: none;
-    margin-top: 2rem;
-    padding: 1rem;
-    background: skyblue;
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-
-
-
-}
-
-.result {
-    margin-top: 20px;
-    font-size: 1rem;
-}
-
-.word {
-
-
-    height: 30px;
-    font-size: 2rem;
-    font-weight: bold;
     display: flex;
-    width: 100%;
-    padding: 20px;
+    justify-content: center;
+    align-content: center;
+}
 
-
-
+#btn1 {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }

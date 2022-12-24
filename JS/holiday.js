@@ -33,7 +33,7 @@ console.log(max('maxwellllltt'));
 function arraySort(arr, num) {
     let final = [];
     let temp = [];
-    let sec = 0;
+
     for (let i = 0; i < arr.length; i++) {
         while (arr.length > 0) {
             if (i % num === 0) {
@@ -50,7 +50,7 @@ function arraySort(arr, num) {
     return final
 }
 
-console.log(arraySort([1, 2, 3, 4, 5, 6, 7], 2));
+console.log(arraySort([1, 2, 3, 4, 5, 6, 7], 3));
 
 function isPalindrome(str) {
     let str2 = str.split("").reverse().join("").toLowerCase();
